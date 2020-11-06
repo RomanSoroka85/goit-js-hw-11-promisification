@@ -36,7 +36,7 @@ const users = [
   { name: "Lux", active: false },
 ];
 
-const toggleUserState = (allUsers, userName, callback) => {
+const toggleUserState = (allUsers, userName) => {
 
     const promise = new Promise((res, rej) => {
         setTimeout(() => {
@@ -56,8 +56,8 @@ const logger1 = (updatedUsers) => console.table(updatedUsers);
 /*
  * Сейчас работает так
  */
-toggleUserState(users, "Mango", logger1);
-toggleUserState(users, "Lux", logger1);
+// toggleUserState(users, "Mango", logger1);
+// toggleUserState(users, "Lux", logger1);
 /*
  * Должно работать так
  */
@@ -70,7 +70,7 @@ const randomIntegerFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-const makeTransaction = (transaction, onSuccess, onError) => {
+const makeTransaction = (transaction) => {
   const delay = randomIntegerFromInterval(200, 500);
   return new Promise((res, rej) => {
     setTimeout(() => {
@@ -84,7 +84,7 @@ const makeTransaction = (transaction, onSuccess, onError) => {
   });
 };
 
-const logSuccess = (id, time) => {
+const logSuccess = ({id, time}) => {
   console.log(`Transaction ${id} processed in ${time}ms`);
 };
 
@@ -95,10 +95,10 @@ const logError = (id) => {
 /*
  * Работает так
  */
-makeTransaction({ id: 70, amount: 150 }, logSuccess, logError);
-makeTransaction({ id: 71, amount: 230 }, logSuccess, logError);
-makeTransaction({ id: 72, amount: 75 }, logSuccess, logError);
-makeTransaction({ id: 73, amount: 100 }, logSuccess, logError);
+// makeTransaction({ id: 70, amount: 150 }, logSuccess, logError);
+// makeTransaction({ id: 71, amount: 230 }, logSuccess, logError);
+// makeTransaction({ id: 72, amount: 75 }, logSuccess, logError);
+// makeTransaction({ id: 73, amount: 100 }, logSuccess, logError);
 /*
  * Должно работать так
  */
