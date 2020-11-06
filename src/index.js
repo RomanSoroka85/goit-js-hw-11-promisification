@@ -53,14 +53,6 @@ const toggleUserState = (allUsers, userName) => {
 
 const logger1 = (updatedUsers) => console.table(updatedUsers);
 
-/*
- * Сейчас работает так
- */
-// toggleUserState(users, "Mango", logger1);
-// toggleUserState(users, "Lux", logger1);
-/*
- * Должно работать так
- */
 toggleUserState(users, "Mango").then(logger1);
 toggleUserState(users, "Lux").then(logger1);
 
@@ -78,7 +70,7 @@ const makeTransaction = (transaction) => {
       if (canProcess) {
         res({ id: transaction.id, time: delay });
       } else {
-        rej(logError({ id: transaction.id }));
+        rej({ id: transaction.id });
       }
     }, delay);
   });
@@ -88,20 +80,10 @@ const logSuccess = ({id, time}) => {
   console.log(`Transaction ${id} processed in ${time}ms`);
 };
 
-const logError = (id) => {
+const logError = ({id}) => {
   console.warn(`Error processing transaction ${id}. Please try again later.`);
 };
 
-/*
- * Работает так
- */
-// makeTransaction({ id: 70, amount: 150 }, logSuccess, logError);
-// makeTransaction({ id: 71, amount: 230 }, logSuccess, logError);
-// makeTransaction({ id: 72, amount: 75 }, logSuccess, logError);
-// makeTransaction({ id: 73, amount: 100 }, logSuccess, logError);
-/*
- * Должно работать так
- */
 makeTransaction({ id: 70, amount: 150 }).then(logSuccess).catch(logError);
 
 makeTransaction({ id: 71, amount: 230 }).then(logSuccess).catch(logError);
